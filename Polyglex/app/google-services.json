@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "284115418022",
+    "firebase_url": "https://poliglex.firebaseio.com",
+    "project_id": "poliglex",
+    "storage_bucket": "poliglex.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:284115418022:android:73ddebb3809126fa",
+        "android_client_info": {
+          "package_name": "com.example.jake.polyglex"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "284115418022-88vcbncm4schjq8fbqj7q4db48qqv5e5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jake.polyglex",
+            "certificate_hash": "c8e4b7294f0626cede0d5a1bdfd27f1967036fc0"
+          }
+        },
+        {
+          "client_id": "284115418022-o9n16aedvphkd8nm73eghabvn9ge51mb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFUvAV99LbkZEeqiHN7065Mr04m-rdyNY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "284115418022-o9n16aedvphkd8nm73eghabvn9ge51mb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

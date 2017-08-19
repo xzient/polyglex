@@ -15,11 +15,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 import user.User;
@@ -91,47 +94,94 @@ public class SignUp extends AppCompatActivity {
                 final String password = mPassword.getText().toString().trim();
                 final String username = mUsername.getText().toString().trim();
 
+                //Check valid username
+                Pattern pattern = Pattern.compile("^\\w{3,}$");
+                Matcher matcher = pattern.matcher(username);
 
-                if (email.isEmpty() || password.isEmpty() || username.isEmpty()) {
-                    Toast.makeText(SignUp.this, R.string.auth_failed3,
-                            Toast.LENGTH_SHORT).show();
+
+                /**
+                 * Constraints to SingUp
+                 */
+                if(email.isEmpty() || password.isEmpty() || username.isEmpty() || !(matcher.matches()) || password.length() < 6) {
+                    if (password.length() < 6) {
+                        Toast.makeText(SignUp.this, R.string.auth_failed5,
+                                Toast.LENGTH_SHORT).show();
+                    }
+                    else if(!(matcher.matches())) {
+                        Toast.makeText(SignUp.this, R.string.auth_failed4,
+                                Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Toast.makeText(SignUp.this, R.string.auth_failed3,
+                                Toast.LENGTH_SHORT).show();
+                    }
+
                     return;
                 }
+
                 /**
                  * Add to fireBase
                  */
                 else {
-                    mAuth.createUserWithEmailAndPassword(email, password)
-                            .addOnCompleteListener(SignUp.this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
+                    /**
+                     *
+                     */
+                    mRef.child(username.toLowerCase()).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if(dataSnapshot.getValue() != null) {
+                                //user exists, error
+                                Toast.makeText(SignUp.this, R.string.auth_failed6,
+                                        Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                            /**
+                             * New User is added
+                             */
+                            else {
+                                mAuth.createUserWithEmailAndPassword(email, password)
+                                        .addOnCompleteListener(SignUp.this, new OnCompleteListener<AuthResult>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                                Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
 
-                                    // If sign in fails, display a message to the user. If sign in succeeds
-                                    // the auth state listener will be notified and logic to handle the
-                                    // signed in user can be handled in the listener.
-                                    if (!task.isSuccessful()) {
-                                        Toast.makeText(SignUp.this, R.string.auth_failed2,
-                                                Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        Log.d("TEST2",  mRef.child(task.getResult().getUser().getUid()).toString());
-                                        Toast.makeText(SignUp.this, "New user added!", Toast.LENGTH_SHORT).show();
+                                                // If sign in fails, display a message to the user. If sign in succeeds
+                                                // the auth state listener will be notified and logic to handle the
+                                                // signed in user can be handled in the listener.
+                                                if (!task.isSuccessful()) {
+                                                    Toast.makeText(SignUp.this, R.string.auth_failed2,
+                                                            Toast.LENGTH_SHORT).show();
+                                                } else {
+                                                    Log.d("TEST2",  mRef.child(task.getResult().getUser().getUid()).toString());
+                                                    Toast.makeText(SignUp.this, "New user added!", Toast.LENGTH_SHORT).show();
 
 
-                                        mRef.child(username.toLowerCase()).setValue(new User(username, password, email, task.getResult().getUser().getUid()));
+                                                    mRef.child(username.toLowerCase()).setValue(new User(username, password, email.toLowerCase(), task.getResult().getUser().getUid()));
 
 
 
 
-                                        //Sign out user so they enter their data
-                                        mAuth.signOut();
-                                        Intent goToFirst = new Intent(SignUp.this, FirstActivity.class);
-                                        startActivity(goToFirst);
-                                    }
+                                                    //Sign out user so they enter their data
+                                                    mAuth.signOut();
+                                                    Intent goToFirst = new Intent(SignUp.this, FirstActivity.class);
+                                                    startActivity(goToFirst);
+                                                }
 
-                                    // ...
-                                }
-                            });
+                                                // ...
+                                            }
+                                        });
+                            }
+
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
+
                 }
             }
         });

@@ -2,9 +2,12 @@
     <string name="app_name">Polyglex</string>
 
     <!-- Strings related to login -->
-    <string name="auth_failed2">Invalid Email or Password format</string>
     <string name="auth_failed">Wrong Email or Password</string>
-    <string name="auth_failed3">One or multiple fields blank</string>
+    <string name="auth_failed2">Invalid Email or Password format</string>
+    <string name="auth_failed3">One or multiple fields empty</string>
+    <string name="auth_failed4">Invalid username, username only accepts letters, numbers, and underscores</string>
+    <string name="auth_failed5">Password should have at least 6 characters</string>
+    <string name="auth_failed6">That username already exists</string>
     <string name="facebook_app_id">1488743317933580</string>
     <string name="fb_login_protocol_scheme">fb1488743317933580</string>
     <string name="prompt_username">Username or Email</string>

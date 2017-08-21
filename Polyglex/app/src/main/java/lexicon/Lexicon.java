@@ -43,7 +43,19 @@ public class Lexicon {
 	public Word getWord(String orthography) {
 		return lexicon.get(orthography);
 	}
-	
+
+	public int getSize() {
+		return this.lexicon.size();
+	}
+
+	public String[] getOrthographyArray() {
+		int size = getSize();
+		String[] words = new String[size];
+        for (int i = 0; i < size; i++) {
+                
+		}
+
+	}
 	/**
 	 * This methods display all the current words in the lexicon.
 	 */

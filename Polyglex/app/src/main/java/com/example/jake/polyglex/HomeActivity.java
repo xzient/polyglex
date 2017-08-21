@@ -45,16 +45,15 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-  /*  public static User test1 = new User("test", "test", "test@test.com", "2345");
-    public static Lexicon test2 = new Lexicon("Spanish");
-    test2.addWord("perro");
-*/
+
+
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
 
         //AUTHENTICATION
@@ -110,7 +109,12 @@ public class HomeActivity extends AppCompatActivity {
         mEnglish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mConditionRef.setValue("Hi!");
+                User test1 = new User("test", "test", "test@test.com", "2345");
+                test1.addLexicon("Spanish");
+                test1.getLexicon("Spanish").addWord("perro");
+                test1.getLexicon("Spanish").addWord("joputa");
+                String[] words = test1.getLexicon("Spanish").getOrthographyArray();
+                Toast.makeText(HomeActivity.this, test1.getLexicon("Spanish")., Toast.LENGTH_SHORT).show();
 
             }
         });

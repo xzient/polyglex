@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import word.*;
 import user.*;
+import lexicon.*;
 
 
 
@@ -35,10 +36,13 @@ public class SpanishWordFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_spanishword, container, false);
         // Inflate the layout for this fragment
 
-        String[] spanishWords = {
-                "palabra",
-                "persona"
-        };
+        User test1 = new User("test", "test", "test@test.com", "2345");
+        test1.addLexicon("Spanish");
+        test1.getLexicon("Spanish").addWord("perro");
+        test1.getLexicon("Spanish").addWord("joputa");
+        String[] words = test1.getLexicon("Spanish").getOrthographyArray();
+        //This method is not working try the other way
+        String[] spanishWords = words;
 
 
 

@@ -4,10 +4,12 @@
     <!-- Strings related to login -->
     <string name="auth_failed">Wrong Email or Password</string>
     <string name="auth_failed2">Invalid Email or Password format</string>
-    <string name="auth_failed3">One or multiple fields empty</string>
-    <string name="auth_failed4">Invalid username, username only accepts letters, numbers. Length should be at least 3 characters.</string>
-    <string name="auth_failed5">Password should have at least 6 characters</string>
+    <string name="auth_failed3">One or multiple fields are empty</string>
+    <string name="auth_failed4">Invalid username, username only accepts letters, numbers. Username\'s length should be at least 3 characters.</string>
+    <string name="auth_failed5">Invalid password! Password should have at least 6 characters. Valid characters are letters, numbers, and the characters \"!@#%^$*?-,.\""</string>
     <string name="auth_failed6">That username already exists</string>
+    <string name="auth_failed7">Unidentified sign up error</string>
+    <string name="auth_failed8">That username does not exist</string>
     <string name="facebook_app_id">1488743317933580</string>
     <string name="fb_login_protocol_scheme">fb1488743317933580</string>
     <string name="prompt_username">Username or Email</string>

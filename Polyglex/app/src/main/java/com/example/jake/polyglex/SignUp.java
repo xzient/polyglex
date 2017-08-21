@@ -91,23 +91,29 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final String email = mEmail.getText().toString().trim();
-                final String password = mPassword.getText().toString().trim();
+                final String password = mPassword.getText().toString(); //Password does not need trimming. So it checks if there are extra spaces after.
                 final String username = mUsername.getText().toString().trim();
 
                 //Check valid username
-                Pattern pattern = Pattern.compile("^\\w{3,}$");
-                Matcher matcher = pattern.matcher(username);
+                Pattern userPattern = Pattern.compile("^\\w{3,}$");
+                Matcher userMatcher = userPattern.matcher(username);
+
+                Pattern passwordPattern = Pattern.compile("^[!@#%\\^$*?\\-,.\\w]{6,}$");
+                Matcher passwordMatcher = passwordPattern.matcher(password);
 
 
                 /**
                  * Constraints to SingUp
                  */
-                if(email.isEmpty() || password.isEmpty() || username.isEmpty() || !(matcher.matches()) || password.length() < 6) {
-                    if (password.length() < 6) {
-                        Toast.makeText(SignUp.this, R.string.auth_failed5,
+                if(email.isEmpty() || password.isEmpty() || username.isEmpty() || !(userMatcher.matches()) || !(passwordMatcher.matches())) {
+                    if(email.isEmpty() || password.isEmpty() || username.isEmpty()) {
+                        Toast.makeText(SignUp.this, R.string.auth_failed3,
                                 Toast.LENGTH_SHORT).show();
                     }
-                    else if(!(matcher.matches())) {
+                    else if(!(passwordMatcher.matches())) {
+                        Toast.makeText(SignUp.this, R.string.auth_failed5, Toast.LENGTH_SHORT).show();
+                    }
+                    else if(!(userMatcher.matches())) {
                         Toast.makeText(SignUp.this, R.string.auth_failed4,
                                 Toast.LENGTH_SHORT).show();
                     }

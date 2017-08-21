@@ -24,6 +24,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import user.*;
+import lexicon.*;
+import word.*;
+
 public class HomeActivity extends AppCompatActivity {
     Toolbar toolbar;
     TabLayout tabLayout;
@@ -39,6 +43,12 @@ public class HomeActivity extends AppCompatActivity {
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mConditionRef = mRootRef.child("condition");
 
+
+
+  /*  public static User test1 = new User("test", "test", "test@test.com", "2345");
+    public static Lexicon test2 = new Lexicon("Spanish");
+    test2.addWord("perro");
+*/
 
 
 
@@ -112,14 +122,8 @@ public class HomeActivity extends AppCompatActivity {
         mSpanish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                android.support.v4.app.FragmentManager fragmentManager = HomeActivity.this.getSupportFragmentManager();
-                android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-                FirstFragment fragment = new FirstFragment();
-
-                fragmentTransaction.add(R.id.fragment_container, fragment);
-                fragmentTransaction.commit();
-
+                Toast.makeText(HomeActivity.this, "spanish", Toast.LENGTH_SHORT).show();
+                getSupportFragmentManager().beginTransaction().add(R.id.container, new SpanishWordFragment()).commit();
             }
         });
     }

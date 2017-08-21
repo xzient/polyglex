@@ -1,7 +1,6 @@
 package user;
 import java.util.*;
 import lexicon.*;
-import userList.*;
 
 /**
  * 

@@ -110,11 +110,11 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 User test1 = new User("test", "test", "test@test.com", "2345");
-                test1.addLexicon("Spanish");
-                test1.getLexicon("Spanish").addWord("perro");
-                test1.getLexicon("Spanish").addWord("joputa");
-                String[] words = test1.getLexicon("Spanish").getOrthographyArray();
-                Toast.makeText(HomeActivity.this, test1.getLexicon("Spanish")., Toast.LENGTH_SHORT).show();
+                test1.addLexicon("English");
+                test1.getLexicon("English").addWord("dog");
+                test1.getLexicon("English").addWord("fucker");
+                String[] words = test1.getLexicon("English").getOrthographyArray();
+                Toast.makeText(HomeActivity.this, test1.getLexicon("English").displayWords(), Toast.LENGTH_SHORT).show();
 
             }
         });

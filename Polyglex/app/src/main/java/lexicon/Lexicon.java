@@ -49,27 +49,30 @@ public class Lexicon {
 	}
 
 	public String[] getOrthographyArray() {
+
+
 		int size = getSize();
 		String[] words = new String[size];
         for (int i = 0; i < size; i++) {
                 
 		}
-
+		return words;
 	}
 	/**
 	 * This methods display all the current words in the lexicon.
 	 */
-	public void displayWords() {
-		//The iterator is used to display the values for now. We may use better methods eventually. 
+	public String displayWords() {
+		String buffer = "";
 		Set set = lexicon.entrySet();
 		Iterator i = set.iterator();
 		while(i.hasNext()) {
 			Map.Entry current = (Map.Entry)i.next();
 			 
 			//To print the current part of speech, casting is needed.
-			System.out.println("Word.- " + current.getKey()
-			+ "\t\tSpelling from value.- " + ((Word) current.getValue()).getOrthography() );
+			buffer += "\nWord.- " + current.getKey()
+			+ " Spelling from value.- " + ((Word) current.getValue()).getOrthography();
 		}
+		return buffer;
 	}
 	
 	

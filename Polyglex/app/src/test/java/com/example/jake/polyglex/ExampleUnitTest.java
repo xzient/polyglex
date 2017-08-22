@@ -3,6 +3,8 @@ package com.example.jake.polyglex;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+
+import user.User;
 import userList.*;
 
 
@@ -18,42 +20,18 @@ public class ExampleUnitTest {
         assertEquals(4, 2 + 2);
     }
 
-    /**
-     * This will test if UserList return the expected value.
-     * @throws Exception
-     */
     @Test
-    public void userList_getRightUser() throws Exception {
-        System.out.println("_______tes2____________");
-        UserList users = UserList.getInstance();
-        users.addUser("John", "Proctor", "john@hi.com");
-        users.addUser("Juan", "Pepe", "juan@bye.com");
+    public void listArray() throws Exception {
 
-        String user1 = users.getUser("Juan").getUsername();
-
-        assertEquals(true, user1.equals("Juan") );
-    }
-
-    @Test
-    public void userList_getRightInfo() throws Exception {
-        UserList users = UserList.getInstance();
-        users.addUser("Valerie", "Proctor", "valerie@hi.com");
-        users.addUser("Javiera", "Parra", "javiera@bye.com");
-
-        String user1 = users.getUser("Javiera").getUsername();
-
-        users.displayUsernames();
-        assertEquals(true, user1.equals("Javiera") );
-    }
-
-    @Test
-    public void userList_getRightInfo2() throws Exception {
-        UserList users = UserList.getInstance();
-        System.out.println("______________________");
-        users.displayUsernames();
-        System.out.println("______________________");
-        System.out.println("Size: " + users.getNumOfUsers());
-
-        assertEquals(false, false );
+        User test1 = new User("test", "test", "test@test.com", "2345");
+        test1.addLexicon("Spanish");
+        test1.getLexicon("Spanish").addWord("perro");
+        test1.getLexicon("Spanish").addWord("pepa");
+        test1.getLexicon("Spanish").addWord("joputa");
+        String[] words = test1.getLexicon("Spanish").getOrthographyArray();
+        for(int i = 0; i < words.length; i++) {
+            System.out.println(words[i]);
+        }
+        assertEquals(4, 2 + 2);
     }
 }

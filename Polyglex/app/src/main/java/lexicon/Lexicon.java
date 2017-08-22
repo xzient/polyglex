@@ -49,14 +49,26 @@ public class Lexicon {
 	}
 
 	public String[] getOrthographyArray() {
+		//return (String[]) lexicon.keySet().toArray();
 
+		String[] words = new String[this.getSize()];
+		Set set = lexicon.entrySet();
+		int index = 0;
+		Iterator i = set.iterator();
+		while(i.hasNext()) {
+			Map.Entry current = (Map.Entry)i.next();
 
-		int size = getSize();
-		String[] words = new String[size];
-        for (int i = 0; i < size; i++) {
-                
+			//To print the current part of speech, casting is needed.
+			words[index] = (String) current.getKey();
+			index++;
 		}
+
+
+
+
 		return words;
+
+
 	}
 	/**
 	 * This methods display all the current words in the lexicon.

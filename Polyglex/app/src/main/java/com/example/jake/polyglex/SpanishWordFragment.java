@@ -39,10 +39,26 @@ public class SpanishWordFragment extends Fragment {
         User test1 = new User("test", "test", "test@test.com", "2345");
         test1.addLexicon("Spanish");
         test1.getLexicon("Spanish").addWord("perro");
+        test1.getLexicon("Spanish").addWord("Islandia");
         test1.getLexicon("Spanish").addWord("joputa");
-        String[] words = test1.getLexicon("Spanish").getOrthographyArray();
+        test1.getLexicon("Spanish").addWord("política");
+        test1.getLexicon("Spanish").addWord("amigo");
+        test1.getLexicon("Spanish").addWord("coche");
+        test1.getLexicon("Spanish").addWord("amistad");
+        test1.getLexicon("Spanish").addWord("variedad");
+        test1.getLexicon("Spanish").addWord("enemistad");
+        test1.getLexicon("Spanish").addWord("circumstancia");
+        test1.getLexicon("Spanish").addWord("atrevimiento");
+        test1.getLexicon("Spanish").addWord("lingüísticamente");
+        test1.getLexicon("Spanish").addWord("arrecho");
+        test1.getLexicon("Spanish").addWord("apasionadamente");
+        test1.getLexicon("Spanish").addWord("monitor");
+        test1.getLexicon("Spanish").addWord("libertinaje");
+        test1.getLexicon("Spanish").addWord("baloncesto");
+        test1.getLexicon("Spanish").addWord("bollera");
+        String[] spanishWords = test1.getLexicon("Spanish").getOrthographyArray();
         //This method is not working try the other way
-        String[] spanishWords = words;
+        //String[] spanishWords = {"un", "dos", "tres"};
 
 
 

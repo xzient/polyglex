@@ -40,9 +40,6 @@ public class Center extends AppCompatActivity
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mConditionRef = mRootRef.child("condition");
 
-    //TextView
-
-    TextView mUsernameDisplay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,14 +98,7 @@ public class Center extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        //The following is needed to display the preferred username.
-        View headerView = navigationView.getHeaderView(0);
-        mUsernameDisplay = (TextView) headerView.findViewById(R.id.username_display);
-        mUsernameDisplay.setText(mAuth.getCurrentUser().getUid()); // For now we only display the UID
     }
-
-
 
     @Override
     public void onBackPressed() {

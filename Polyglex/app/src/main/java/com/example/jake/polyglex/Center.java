@@ -1,10 +1,12 @@
 package com.example.jake.polyglex;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -17,11 +19,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
 
 public class Center extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -35,6 +40,9 @@ public class Center extends AppCompatActivity
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mConditionRef = mRootRef.child("condition");
 
+    //TextView
+
+    TextView mUsernameDisplay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +101,14 @@ public class Center extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //The following is needed to display the preferred username.
+        View headerView = navigationView.getHeaderView(0);
+        mUsernameDisplay = (TextView) headerView.findViewById(R.id.username_display);
+        mUsernameDisplay.setText(mAuth.getCurrentUser().getUid()); // For now we only display the UID
     }
+
+
 
     @Override
     public void onBackPressed() {
@@ -127,23 +142,48 @@ public class Center extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    String[] listItems;
+    boolean[] checkedItem;
+    ArrayList<Integer> mSelectedItem = new ArrayList<>();
+    String selection;
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.add_language) {
+            listItems = getResources().getStringArray(R.array.languages);
 
-        } else if (id == R.id.nav_slideshow) {
+            AlertDialog.Builder mBuilder = new AlertDialog.Builder(Center.this);
+            mBuilder.setTitle("Select Language");
+            mBuilder.setSingleChoiceItems(listItems, -1, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    selection = (String) listItems[which];
+                }
+            });
 
-        } else if (id == R.id.nav_manage) {
+            mBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Toast.makeText(Center.this, "You've selected " + selection, Toast.LENGTH_SHORT).show();
 
-        } else if (id == R.id.nav_share) {
+                }
+            });
 
-        } else if (id == R.id.nav_send) {
+            mBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+
+            AlertDialog mDialog = mBuilder.create();
+            mDialog.show();
+
+        } else if (id == R.id.action_settings) {
 
         } else if (id == R.id.logout) {
             mAuth.signOut();

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/add_language"
+            android:icon="@drawable/ic_add_language"
+            android:title="Add language" />
+
+    </group>
+
+    <item android:title="General">
+        <menu>
+
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_manage"
+                android:title="Settings" />
+            <item
+            android:id="@+id/logout"
+            android:icon="@drawable/ic_log_out"
+            android:title="Logout" />
+
+        </menu>
+    </item>
+
+</menu>

@@ -27,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Center extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -40,6 +41,10 @@ public class Center extends AppCompatActivity
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mConditionRef = mRootRef.child("condition");
 
+    String[] fullItems;
+    boolean[] checkedItems;
+    String selection;
+    int langNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +103,9 @@ public class Center extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        fullItems = getResources().getStringArray(R.array.languages);
+        checkedItems = new boolean[fullItems.length];
     }
 
     @Override
@@ -132,10 +140,7 @@ public class Center extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    String[] listItems;
-    boolean[] checkedItem;
-    ArrayList<Integer> mSelectedItem = new ArrayList<>();
-    String selection;
+
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -144,21 +149,36 @@ public class Center extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.add_language) {
-            listItems = getResources().getStringArray(R.array.languages);
+
+            final ArrayList<String> mOffItems = new ArrayList<>();
+
+            for (int i = 0; i < fullItems.length; i++) {
+                if (!checkedItems[i]) {
+                    mOffItems.add(fullItems[i]);
+                }
+            }
+            final String[] offItems = mOffItems.toArray(new String[mOffItems.size()]);
 
             AlertDialog.Builder mBuilder = new AlertDialog.Builder(Center.this);
             mBuilder.setTitle("Select Language");
-            mBuilder.setSingleChoiceItems(listItems, -1, new DialogInterface.OnClickListener() {
+            mBuilder.setSingleChoiceItems(offItems, -1, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    selection = (String) listItems[which];
+                    selection = (String) offItems[which];
+                    langNum = which;
                 }
             });
 
             mBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    Toast.makeText(Center.this, "You've selected " + selection, Toast.LENGTH_SHORT).show();
+                    int index = Arrays.asList(fullItems).indexOf(selection);
+                    checkedItems[index] = true;
+                    for (int i = 0; i < checkedItems.length; i++) {
+                        if (checkedItems[i]) {
+                            Toast.makeText(Center.this, fullItems[i] + " is on", Toast.LENGTH_SHORT).show();
+                        }
+                    }
 
                 }
             });

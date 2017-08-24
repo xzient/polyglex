@@ -4,6 +4,42 @@
     <group android:checkableBehavior="single">
 
         <item
+            android:id="@+id/english_lexicon"
+            android:icon="@mipmap/ic_english_icon"
+            android:visible="false"
+            android:title="English"/>
+
+        <item
+            android:id="@+id/french_lexicon"
+            android:icon="@mipmap/ic_french_icon"
+            android:visible="false"
+            android:title="French"/>
+
+        <item
+            android:id="@+id/german_lexicon"
+            android:icon="@mipmap/ic_german_icon"
+            android:visible="false"
+            android:title="German"/>
+
+        <item
+            android:id="@+id/japanese_lexicon"
+            android:icon="@mipmap/ic_japanese_icon"
+            android:visible="false"
+            android:title="Japanese"/>
+
+        <item
+            android:id="@+id/portuguese_lexicon"
+            android:icon="@mipmap/ic_portuguese_icon"
+            android:visible="false"
+            android:title="Portuguese"/>
+
+        <item
+            android:id="@+id/spanish_lexicon"
+            android:icon="@mipmap/ic_spanish_icon"
+            android:visible="false"
+            android:title="Spanish"/>
+
+        <item
             android:id="@+id/add_language"
             android:icon="@drawable/ic_add_language"
             android:title="Add language" />

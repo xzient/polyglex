@@ -103,9 +103,13 @@ public class Center extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setItemIconTintList(null);
 
         fullItems = getResources().getStringArray(R.array.languages);
         checkedItems = new boolean[fullItems.length];
+
+
+
     }
 
     @Override
@@ -148,7 +152,20 @@ public class Center extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.add_language) {
+        if (id == R.id.english_lexicon) {
+            Toast.makeText(this, "English Lexicon", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.french_lexicon) {
+            Toast.makeText(this, "French Lexicon", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.german_lexicon) {
+            Toast.makeText(this, "German Lexicon", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.japanese_lexicon) {
+            Toast.makeText(this, "Japanese Lexicon", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.portuguese_lexicon) {
+            Toast.makeText(this, "Portuguese Lexicon", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.spanish_lexicon) {
+            Toast.makeText(this, "Spanish Lexicon", Toast.LENGTH_SHORT).show();
+
+        } else if (id == R.id.add_language) {
 
             final ArrayList<String> mOffItems = new ArrayList<>();
 
@@ -174,12 +191,32 @@ public class Center extends AppCompatActivity
                 public void onClick(DialogInterface dialog, int which) {
                     int index = Arrays.asList(fullItems).indexOf(selection);
                     checkedItems[index] = true;
-                    for (int i = 0; i < checkedItems.length; i++) {
-                        if (checkedItems[i]) {
-                            Toast.makeText(Center.this, fullItems[i] + " is on", Toast.LENGTH_SHORT).show();
-                        }
+                    NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+                    if (checkedItems[Arrays.asList(fullItems).indexOf("English")]) {
+                        navigationView.getMenu().findItem(R.id.english_lexicon).setVisible(true);
                     }
 
+                    if (checkedItems[Arrays.asList(fullItems).indexOf("French")]) {
+                        navigationView.getMenu().findItem(R.id.french_lexicon).setVisible(true);
+                    }
+
+                    if (checkedItems[Arrays.asList(fullItems).indexOf("German")]) {
+                        navigationView.getMenu().findItem(R.id.german_lexicon).setVisible(true);
+                    }
+
+                    if (checkedItems[Arrays.asList(fullItems).indexOf("Japanese")]) {
+                        navigationView.getMenu().findItem(R.id.japanese_lexicon).setVisible(true);
+                    }
+
+                    if (checkedItems[Arrays.asList(fullItems).indexOf("Portuguese")]) {
+                        navigationView.getMenu().findItem(R.id.portuguese_lexicon).setVisible(true);
+                    }
+
+                    if (checkedItems[Arrays.asList(fullItems).indexOf("Spanish")]) {
+                        navigationView.getMenu().findItem(R.id.spanish_lexicon).setVisible(true);
+                    }
+
+                    Toast.makeText(Center.this, "Lexicon created!", Toast.LENGTH_SHORT).show();
                 }
             });
 

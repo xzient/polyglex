@@ -38,11 +38,16 @@ public class Center extends AppCompatActivity
     //DATA
     //FirebaseDatabase database;
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
+<<<<<<< HEAD
     DatabaseReference mConditionRef;
 
     //TextView
 
     TextView mUsernameDisplay;
+=======
+    DatabaseReference mConditionRef = mRootRef.child("condition");
+
+>>>>>>> 0db11e914c934a9a40d8e74b84dbb8651ca5912a
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +106,7 @@ public class Center extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+<<<<<<< HEAD
 
         //The following is needed to display the preferred username.
 
@@ -114,6 +120,10 @@ public class Center extends AppCompatActivity
 
 
 
+=======
+    }
+
+>>>>>>> 0db11e914c934a9a40d8e74b84dbb8651ca5912a
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -57,11 +57,13 @@ public class DummyContent {
         public final String id;
         public final String content;
         public final String details;
+        //public final String id2;
 
         public DummyItem(String id, String content, String details) {
             this.id = id;
             this.content = content;
             this.details = details;
+            //this.id2 = id2;
         }
 
         @Override

@@ -161,7 +161,7 @@ public class FirstActivity extends AppCompatActivity {
                                         if (task.isSuccessful()) {
                                             Toast.makeText(FirstActivity.this, "Logged in!",
                                                     Toast.LENGTH_SHORT).show();
-                                            Intent home = new Intent(FirstActivity.this, HomeActivity.class);
+                                            Intent home = new Intent(FirstActivity.this, Center.class);
                                             startActivity(home);
                                         }
                                         // If sign in fails, display a message to the user. If sign in succeeds

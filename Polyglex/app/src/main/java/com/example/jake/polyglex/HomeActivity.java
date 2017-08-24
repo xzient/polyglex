@@ -43,13 +43,6 @@ public class HomeActivity extends AppCompatActivity {
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mConditionRef = mRootRef.child("condition");
 
-
-
-
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,7 +105,7 @@ public class HomeActivity extends AppCompatActivity {
                 User test1 = new User("test", "test", "test@test.com", "2345");
                 test1.addLexicon("English");
                 test1.getLexicon("English").addWord("dog");
-                test1.getLexicon("English").addWord("fucker");
+                test1.getLexicon("English").addWord("pucker");
                 String[] words = test1.getLexicon("English").getOrthographyArray();
                 Toast.makeText(HomeActivity.this, test1.getLexicon("English").displayWords(), Toast.LENGTH_SHORT).show();
 

@@ -36,7 +36,7 @@ public class SignUp extends AppCompatActivity {
 
     //DATABASE
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference mRef = mRootRef.child("users");
+    DatabaseReference mRef;
 
     private static final String TAG = "SignUpActivity";
 
@@ -53,6 +53,7 @@ public class SignUp extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         //DATABASE
+        mRef = mRootRef;
         //database = FirebaseDatabase.getInstance();
         //mRef = database.getReference("Users");
 
@@ -162,9 +163,9 @@ public class SignUp extends AppCompatActivity {
                                                     Toast.makeText(SignUp.this, "New user added!", Toast.LENGTH_SHORT).show();
 
 
-                                                    mRef.child(username.toLowerCase()).setValue(new User(username, password, email.toLowerCase(), task.getResult().getUser().getUid()));
+                                                    mRef.child("users").child(mAuth.getCurrentUser().getUid()).setValue(new User(username, password, email.toLowerCase(), "NoHayOtro"));
 
-
+                                                    mRef.child("usernames").child(username.toLowerCase()).setValue(new User(username, password, email.toLowerCase(), "NoHayOtro"));
 
 
                                                     //Sign out user so they enter their data

@@ -306,13 +306,13 @@ public class Center extends AppCompatActivity
     }
 
     /***********************************************************************/
-    /*public void refreshNow() {
+    public void refreshNow() {
         finish();
         overridePendingTransition(0, 0);
         startActivity(getIntent());
         overridePendingTransition(0, 0);
     }
-*/
+
     /***********************************************************************/
     //This is added for authentication. I still don't know what it does exactly--- Xavier
     @Override

@@ -45,7 +45,7 @@ public class EnglishWordFragment extends Fragment {
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
-                        ((HomeActivity) getActivity()).refreshNow();
+                        ((Center) getActivity()).refreshNow();
                         Toast.makeText(getContext(), "Refresh Layout working", Toast.LENGTH_LONG).show();
                     }
                 }

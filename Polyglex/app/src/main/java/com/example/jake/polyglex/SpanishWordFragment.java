@@ -35,7 +35,7 @@ public class SpanishWordFragment extends Fragment {
         test1.getLexicon("Spanish").addWord("amistad");
         test1.getLexicon("Spanish").addWord("variedad");
         test1.getLexicon("Spanish").addWord("enemistad");
-        test1.getLexicon("Spanish").addWord("circumstancia");
+        test1.getLexicon("Spanish").addWord("circunstancia");
         test1.getLexicon("Spanish").addWord("atrevimiento");
         test1.getLexicon("Spanish").addWord("lingüísticamente");
         test1.getLexicon("Spanish").addWord("arrecho");
@@ -62,7 +62,7 @@ public class SpanishWordFragment extends Fragment {
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
-                        ((HomeActivity) getActivity()).refreshNow();
+                        ((Center) getActivity()).refreshNow();
                         Toast.makeText(getContext(), "Refresh Layout working", Toast.LENGTH_LONG).show();
                     }
                 }

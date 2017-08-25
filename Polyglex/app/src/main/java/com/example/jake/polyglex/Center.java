@@ -23,8 +23,11 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,8 +42,12 @@ public class Center extends AppCompatActivity
     //DATA
     //FirebaseDatabase database;
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference mConditionRef = mRootRef.child("condition");
+    DatabaseReference mRef = mRootRef.child("users");
+    String mUsername;
+    TextView mUsernameDisplay;
+    NavigationView navigationView;
 
+    //Language array
     String[] fullItems;
     boolean[] checkedItems;
     String selection;
@@ -50,13 +57,21 @@ public class Center extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setContentView(R.layout.activity_center);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         //AUTHENTICATION
         mAuth = FirebaseAuth.getInstance();
 
-        //DATABASE
-        //database = FirebaseDatabase.getInstance();
-        //myRef = database.getReference("message");
 
+        //DATABASE
+            //Retrieve data for Navigator Header
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+
+        //Authenticate User
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -64,6 +79,37 @@ public class Center extends AppCompatActivity
                 if (user != null) {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+
+
+                    /**
+                     * This part allows the code to get usename.
+                     */
+                    mRef.child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if(dataSnapshot.getValue() != null) {
+                                mUsername = dataSnapshot.child("username").getValue(String.class);
+                                //Toast.makeText(Center.this, mUsername, oast.LENGTH_SHORT).show();//Toast to check user
+                                View headerView = navigationView.getHeaderView(0);
+                                mUsernameDisplay = (TextView) headerView.findViewById(R.id.username_display);
+                                mUsernameDisplay.setText(mUsername);
+                            }
+                            else {
+                                mUsername = "NULL";
+                                Toast.makeText(Center.this, "No data found",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
+
+
+                    //***************************************************//
 
                     //If logged in already. It goes directly to Center.
                     //setContentView(R.layout.activity_center);
@@ -82,10 +128,6 @@ public class Center extends AppCompatActivity
 
         //Set Layout
 
-        setContentView(R.layout.activity_center);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,17 +143,14 @@ public class Center extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
         navigationView.setItemIconTintList(null);
 
+
+        //Language array
         fullItems = getResources().getStringArray(R.array.languages);
         checkedItems = new boolean[fullItems.length];
-
-
-
-    }
-
+    }//End onCreate
+    /***********************************************************************/
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -121,14 +160,14 @@ public class Center extends AppCompatActivity
             super.onBackPressed();
         }
     }
-
+    /***********************************************************************/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.center, menu);
         return true;
     }
-
+    /***********************************************************************/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -144,8 +183,12 @@ public class Center extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-
-
+    /************************************************************************
+    /**
+     * This method works for the display of current languages used
+     * @param item
+     * @return
+     */
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -242,7 +285,7 @@ public class Center extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
+    /***********************************************************************/
     public void refreshNow() {
         finish();
         overridePendingTransition(0, 0);
@@ -250,15 +293,14 @@ public class Center extends AppCompatActivity
         overridePendingTransition(0, 0);
     }
 
+    /***********************************************************************/
     //This is added for authentication. I still don't know what it does exactly--- Xavier
     @Override
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
-
-
     }
-
+    /***********************************************************************/
     @Override
     public void onStop() {
         super.onStop();
@@ -266,4 +308,6 @@ public class Center extends AppCompatActivity
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
+    /***********************************************************************/
 }
+/***********************************************************************/

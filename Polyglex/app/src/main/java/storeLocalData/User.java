@@ -1,6 +1,5 @@
-package user;
+package storeLocalData;
 import java.util.*;
-import lexicon.*;
 
 /**
  * 

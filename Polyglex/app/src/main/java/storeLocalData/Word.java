@@ -1,8 +1,7 @@
-package word;
+package storeLocalData;
 
 import java.util.LinkedList;
 
-import instance.*;
 import langEnglishPackage.EnglishInstance;
 import langSpanishPackage.SpanishInstance;
 
@@ -16,7 +15,7 @@ public class Word {
 	private String orthography;
 	private String language;
 	
-	private LinkedList<Instance> instances; 
+	private LinkedList<Instance> instances;
 	
 	/**
 	 * Constructor that takes the following parameters:

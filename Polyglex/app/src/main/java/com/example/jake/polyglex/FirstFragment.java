@@ -12,11 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import user.*;
-import lexicon.*;
-import word.*;
-import instance.*;
-import userList.*;
+import storeLocalData.*;
+
 
 
 /**

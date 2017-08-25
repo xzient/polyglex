@@ -1,8 +1,6 @@
-package userList;
-import android.widget.Toast;
+package storeLocalData;
 
 import java.util.LinkedList;
-import user.User;
 
 public class UserList {
 

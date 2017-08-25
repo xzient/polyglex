@@ -1,8 +1,6 @@
-package lexicon;
+package storeLocalData;
 
 import java.util.*;
-
-import word.*;
 
 /**
  * 

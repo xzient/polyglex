@@ -36,7 +36,7 @@ public class FirstActivity extends AppCompatActivity {
 
     //Get data for the listener (retrieve data from database)
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference myRef = mRootRef.child("users");
+    DatabaseReference myRef = mRootRef.child("usernames");
 
     /**
      * ON CREATE
@@ -120,8 +120,8 @@ public class FirstActivity extends AppCompatActivity {
                                                     if (task.isSuccessful()) {
                                                         Toast.makeText(FirstActivity.this, "Logged in!",
                                                                 Toast.LENGTH_SHORT).show();
-                                                        Intent home = new Intent(FirstActivity.this, HomeActivity.class);
-                                                        startActivity(home);
+                                                        Intent center = new Intent(FirstActivity.this, Center.class);
+                                                        startActivity(center);
                                                     }
                                                     // If sign in fails, display a message to the user. If sign in succeeds
                                                     // the auth state listener will be notified and logic to handle the

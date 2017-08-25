@@ -23,9 +23,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
 
-import user.User;
+import storeLocalData.User;
 
 public class SignUp extends AppCompatActivity {
 
@@ -133,7 +132,7 @@ public class SignUp extends AppCompatActivity {
                     /**
                      *
                      */
-                    mRef.child(username.toLowerCase()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    mRef.child("usernames").child(username.toLowerCase()).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             if(dataSnapshot.getValue() != null) {

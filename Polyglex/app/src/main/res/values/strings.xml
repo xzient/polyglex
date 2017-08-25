@@ -3,7 +3,7 @@
 
     <!-- Strings related to login -->
     <string name="auth_failed">Wrong Email or Password</string>
-    <string name="auth_failed2">Invalid Email or Password format</string>
+    <string name="auth_failed2">That Email is already being used</string>
     <string name="auth_failed3">One or multiple fields are empty</string>
     <string name="auth_failed4">Invalid username, username only accepts letters, numbers. Username\'s length should be at least 3 characters.</string>
     <string name="auth_failed5">Invalid password! Password should have at least 6 characters. Valid characters are letters, numbers, and the characters \"!@#%^$*?-,.\""</string>

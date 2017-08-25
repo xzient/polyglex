@@ -4,8 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-import user.User;
-import userList.*;
+import storeLocalData.User;
 
 
 /**

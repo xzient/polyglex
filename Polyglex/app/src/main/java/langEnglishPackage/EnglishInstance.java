@@ -1,5 +1,5 @@
 package langEnglishPackage;
-import instance.Instance;
+import storeLocalData.Instance;
 
 public class EnglishInstance extends Instance {
 	

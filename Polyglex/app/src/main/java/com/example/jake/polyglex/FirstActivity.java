@@ -90,7 +90,7 @@ public class FirstActivity extends AppCompatActivity {
                  * Check if login is a username or a password
                  */
                 //It's a username
-                if (!login.contains("@")) {
+                if (!login.isEmpty() && !login.contains("@")) {
                     myRef.child(login.toLowerCase()).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {

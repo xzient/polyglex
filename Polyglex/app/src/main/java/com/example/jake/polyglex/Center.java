@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
@@ -195,8 +198,17 @@ public class Center extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+
         if (id == R.id.english_lexicon) {
-            Toast.makeText(this, "English Lexicon", Toast.LENGTH_SHORT).show();
+
+            EnglishWordFragment frag = new EnglishWordFragment();
+
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container, frag);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+
         } else if (id == R.id.french_lexicon) {
             Toast.makeText(this, "French Lexicon", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.german_lexicon) {
@@ -206,7 +218,14 @@ public class Center extends AppCompatActivity
         } else if (id == R.id.portuguese_lexicon) {
             Toast.makeText(this, "Portuguese Lexicon", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.spanish_lexicon) {
-            Toast.makeText(this, "Spanish Lexicon", Toast.LENGTH_SHORT).show();
+
+            SpanishWordFragment frag = new SpanishWordFragment();
+
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container, frag);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
 
         } else if (id == R.id.add_language) {
 
@@ -285,14 +304,15 @@ public class Center extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
     /***********************************************************************/
-    public void refreshNow() {
+    /*public void refreshNow() {
         finish();
         overridePendingTransition(0, 0);
         startActivity(getIntent());
         overridePendingTransition(0, 0);
     }
-
+*/
     /***********************************************************************/
     //This is added for authentication. I still don't know what it does exactly--- Xavier
     @Override

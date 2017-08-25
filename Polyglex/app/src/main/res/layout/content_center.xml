@@ -8,4 +8,15 @@
     tools:context="com.example.jake.polyglex.Center"
     tools:showIn="@layout/app_bar_center">
 
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        tools:context="com.example.jake.polyglex.Center"
+        tools:ignore="MergeRootFrame">
+    </FrameLayout>
+
+
+
 </android.support.constraint.ConstraintLayout>
